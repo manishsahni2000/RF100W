@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title> Dino Realms </title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="main.js"></script>
+        <script src="surveyresult.js"></script>
+        <script src="surveynote.js"></script>
+        <script src="https://unpkg.com/realm-web@1.2.0/dist/bundle.iife.js"></script>
+        <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onLoad="onLoad()" >
+        <div id="app">
+
+            <div v-if="loginVisible" id="loginpage">
+                <div class=loginbox>
+                    🦖 Authorised Users Only 🦖
+                    <div id="loginerror"></div>
+               <span class="login_label">Username:</span><span class="login_input"><input id="username"></span></p>
+               <span class="login_label">Password:</span><span class="login_input"><input type="password" id="password"></span></p>
+               <button  v-on:click="logInUser" class="login_button" id="loginbutton" type="button">Login</button></p>
+                </div>
+            </div>
+
+            <div  v-if="!loginVisible"  id="mappage">
+                <button v-on:click="logOutUser"> Logout </button>
+                <div class="map_container" >   
+                    
+                    <img class="map" id="map" src="island.jpg"/>
+
+                    <span v-for="surveyResult in surveyResults"  > 
+                     
+                        <!-- Icons -->
+                        <span v-for="type in ['carnivores','herbivores','visitors']">
+                            <span v-if="surveyResult[type] > 0"  v-bind:style="{
+                                top: ( surveyResult.getOffsets(type)[1] + Math.floor(surveyResult.gridsquare/8)*12.5) + '%',
+                                left: ( surveyResult.getOffsets(type)[0] +(surveyResult.gridsquare % 8)*12.5) + '%',
+                                height: surveyResult[type]*0.05 + '%',
+                                width: surveyResult[type]*0.05 + '%',
+                                'font-size': surveyResult[type]*0.04 + 'vw' }" class="icon"> {{ surveyResult.getIcon(type) }}
+                             </span>
+                        </span>
+                        
+                        <!-- Squares -->
+                        <span   v-on:click="squareClicked(surveyResult)" class="gridsquare" 
+                          v-bind:style="{ border: '1px red '+ ((surveyResult == selectedResult) ? 'solid':'' ),
+                                        top: (Math.floor(surveyResult.gridsquare/8)*12.5) + '%',
+                                        left: ((surveyResult.gridsquare % 8)*12.5) + '%' }">
+                        </span>
+                    </span>
+                </div></p>
+             
+                <div class ="sliders_container">
+                    <span v-for="type in ['carnivores','herbivores','visitors']">
+
+                        <div class="label_and_slider">
+                            <span class="slider_label">{{ type }}:</span>
+                            <span class="slider_container">
+                                <input  v-on:change="sliderChange(type)" v-model="sliders[type]" type="range" min="1" max="100" class="slider" id="myRange" />
+                            </span>
+                        </div></p>
+                    </span>
+                </div></p>
+
+                <div class="notes">
+                    Notes:
+                <textarea  v-on:input="notesChanged" v-model="notes" class="notetext" id="textbox" name="txt" rows="8" >
+                </textarea>
+                
+                </div>
+                <div class="error_message">{{lastError}}</div>
+            </div>
+        </div>
+    </body>
+</html>

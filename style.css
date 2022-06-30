@@ -1,0 +1,145 @@
+.map {
+    width: 100%;
+}
+
+.error_message {
+    color: red;
+    font-size: 12pt;
+}
+
+.map_container {
+    position: relative;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+  }
+
+
+
+#mappage {
+	display: block;
+}
+
+#loginerror {
+	color: red;
+}
+
+#loginpage {
+	position: relative;
+	top: 100px;
+	text-align: center;
+	display: block;
+}
+
+.login_button {
+    width:80%;
+    
+}
+
+.loginbox {
+	border-style: solid;
+	display: inline-block;
+}
+
+.login_label {
+    float: left ;
+    margin: 0px;
+    display: inline-block;
+    width: 40%;
+    text-align: right;
+    font-size: 12pt;
+}
+
+.slider_label {
+    float: left ;
+    margin: 0px;
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    text-transform: capitalize;
+}
+
+
+.slider_container {
+    margin: 0px;
+    width: 80%;
+    display: inline-block;
+
+}
+
+.sliders_container {
+    width: 100%;
+}
+
+.label_and_slider {
+    display: block;
+    margin: 0px;
+    width: 100%;
+}
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+.map {
+	width: 100%;
+}
+
+.notetext {
+	width: 100%;
+}
+
+body {
+    font-family: verdana;
+    font-size: 14pt;
+}
+
+
+.icon {
+    padding: 0.5%;
+
+    border-radius: 50%;
+    position: absolute;
+    background-color: white;
+    color: white;
+
+    font-family: verdana;
+    display: inline-block;
+    transition:transform 0.1;
+  }
+
+  .gridsquare {
+      position: absolute;
+      border: solid 1px darkgrey;
+      width: 12.5%;
+      height: 12.5%;
+      display: block;
+  }
